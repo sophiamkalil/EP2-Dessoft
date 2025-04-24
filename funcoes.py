@@ -39,3 +39,19 @@ def remover_dado(lista_dados_rolados, lista_dados_estoque, indice): #indice: ind
 
     return lista_rolados_estoque
 
+def calcula_pontos_regra_simples(lista_numeros): #numeros: faces do dado
+    dict_pontos = {}
+    dict_pontos[1] = 0
+    dict_pontos[2] = 0
+    dict_pontos[3] = 0
+    dict_pontos[4] = 0
+    dict_pontos[5] = 0
+    dict_pontos[6] = 0
+
+    for numero in lista_numeros:
+        if numero in dict_pontos:
+            dict_pontos[numero] += numero
+        else:
+            dict_pontos[numero] = numero 
+
+    return dict_pontos

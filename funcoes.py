@@ -58,4 +58,9 @@ def calcula_pontos_regra_simples(lista_numeros): #numeros: faces do dado
 
 
 def calcula_pontos_soma(dados):
-    return sum(dados)
+    soma = 0
+    i = 0
+    while i < len(dados):
+        soma += dados[i]
+        i += 1
+    return soma

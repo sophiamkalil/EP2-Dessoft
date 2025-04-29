@@ -67,20 +67,8 @@ def calcula_pontos_soma(dados):
 
 
 def calcula_pontos_sequencia_baixa(dados):
-    sequencias_validas = [
-        [1, 2, 3, 4],
-        [2, 3, 4, 5],
-        [3, 4, 5, 6]
-    ]
-    
-    for i in range(len(dados) - 3):
-        subsequencia = dados[i:i+4]
-        for seq in sequencias_validas:
-            match = True
-            for j in range(4):
-                if subsequencia[j] != seq[j]:
-                    match = False
-                    break
-            if match:
-                return 15
+    dados_sorted = sorted(dados)
+    for i in range(len(dados_sorted) - 3):
+        if dados_sorted[i+3] - dados_sorted[i] == 3:
+            return 15
     return 0

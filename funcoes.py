@@ -55,3 +55,7 @@ def calcula_pontos_regra_simples(lista_numeros): #numeros: faces do dado
             dict_pontos[numero] = numero 
 
     return dict_pontos
+
+
+def calcula_pontos_soma(dados):
+    return sum(dados)

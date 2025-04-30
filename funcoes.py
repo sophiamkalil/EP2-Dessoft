@@ -100,6 +100,7 @@ def calcula_pontos_sequencia_alta(dados):
             
     return 0
 
+
 def calcula_pontos_full_house(lista_faces):
     soma_faces = 0
     

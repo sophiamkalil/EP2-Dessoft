@@ -99,3 +99,22 @@ def calcula_pontos_sequencia_alta(dados):
             return 30
             
     return 0
+
+def calcula_pontos_full_house(dados):
+    if len(dados) != 5:
+        return 0
+    frequencia = {}
+    for num in dados:
+        if num in frequencia:
+            frequencia[num] += 1
+        else:
+            frequencia[num] = 1
+
+    valores = list(frequencia.values())
+    if len(valores) == 2 and (valores.count(3) == 1 and valores.count(2) == 1):
+        soma = 0
+        for num in dados:
+            soma += num
+        return soma
+    else:
+        return 0

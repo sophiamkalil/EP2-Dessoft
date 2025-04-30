@@ -100,21 +100,36 @@ def calcula_pontos_sequencia_alta(dados):
             
     return 0
 
-def calcula_pontos_full_house(dados):
-    if len(dados) != 5:
-        return 0
-    frequencia = {}
-    for num in dados:
-        if num in frequencia:
-            frequencia[num] += 1
-        else:
-            frequencia[num] = 1
 
-    valores = list(frequencia.values())
-    if len(valores) == 2 and (valores.count(3) == 1 and valores.count(2) == 1):
-        soma = 0
-        for num in dados:
-            soma += num
-        return soma
-    else:
-        return 0
+def calcula_pontos_full_house(lista_faces):
+    soma_faces = 0
+    
+    for face in lista_faces:
+        soma_faces += face
+
+    count1 = 0
+    for i in range(len(lista_faces)):
+        face = lista_faces[0]
+        if lista_faces[i] == face:
+            count1 += 1
+        else:
+            face_diferente = lista_faces[i]
+    if count1 == 3:
+        count = 0
+        for i in range(len(lista_faces)):
+            if lista_faces[i] == face_diferente:
+                count += 1
+    
+        if count == 2:
+            return soma_faces
+    elif count1 == 2:
+        count = 0
+        for i in range(len(lista_faces)):
+            if lista_faces[i] == face_diferente:
+                count += 1
+        if count == 3:
+            return soma_faces
+    
+    return 0
+    
+        

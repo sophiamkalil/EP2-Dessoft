@@ -99,3 +99,36 @@ def calcula_pontos_sequencia_alta(dados):
             return 30
             
     return 0
+
+def calcula_pontos_full_house(lista_faces):
+    soma_faces = 0
+    
+    for face in lista_faces:
+        soma_faces += face
+
+    count1 = 0
+    for i in range(len(lista_faces)):
+        face = lista_faces[0]
+        if lista_faces[i] == face:
+            count1 += 1
+        else:
+            face_diferente = lista_faces[i]
+    if count1 == 3:
+        count = 0
+        for i in range(len(lista_faces)):
+            if lista_faces[i] == face_diferente:
+                count += 1
+    
+        if count == 2:
+            return soma_faces
+    elif count1 == 2:
+        count = 0
+        for i in range(len(lista_faces)):
+            if lista_faces[i] == face_diferente:
+                count += 1
+        if count == 3:
+            return soma_faces
+    
+    return 0
+    
+        

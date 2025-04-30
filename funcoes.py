@@ -151,3 +151,12 @@ def calcula_pontos_quadra(lista_faces):
     
     return 0
 
+
+def calcula_pontos_quina(dados):
+    if len(dados) < 5:
+        return 0
+    for num in dados:
+        if dados.count(num) >= 5:
+            return 50
+    return 0
+

@@ -82,3 +82,20 @@ def calcula_pontos_sequencia_baixa(dados):
             return 15
             
     return 0
+
+
+def calcula_pontos_sequencia_alta(dados):
+    sequencias = [
+        [1, 2, 3, 4, 5],
+        [2, 3, 4, 5, 6]
+    ]
+    for seq in sequencias:
+        todos_presentes = True
+        for num in seq:
+            if num not in dados:
+                todos_presentes = False
+                break
+        if todos_presentes:
+            return 30
+            
+    return 0

@@ -131,4 +131,22 @@ def calcula_pontos_full_house(lista_faces):
     
     return 0
     
-        
+def calcula_pontos_quadra(lista_faces):
+    soma_faces = 0
+
+    for face in lista_faces:
+        soma_faces += face
+
+    frequencias = {}
+    for face in lista_faces:
+        if face not in frequencias:
+            frequencias[face] = 1
+        else:
+            frequencias[face] += 1
+    
+    for count in frequencias.values():
+        if count >= 4:
+            return soma_faces
+    
+    return 0
+

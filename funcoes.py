@@ -170,3 +170,21 @@ def calcula_pontos_regra_avancada(dados):
         'sequencia_alta': calcula_pontos_sequencia_alta(dados),
         'sequencia_baixa': calcula_pontos_sequencia_baixa(dados)
     }
+
+def faz_jogada(list_dados, categoria, dict_cartelas_pontos):
+    regra_avancada = calcula_pontos_regra_avancada(list_dados)
+    regra_simples = calcula_pontos_regra_simples(list_dados)
+
+    if categoria in regra_avancada:
+        dict_categorias = dict_cartelas_pontos['regra_avancada']
+        for cat_pontos in dict_categorias:
+            dict_categorias[categoria] = regra_avancada[categoria]
+
+    elif int(categoria) in regra_simples:
+        categoria = int(categoria)
+        dict_categorias = dict_cartelas_pontos['regra_simples']
+        for cat_pontos in dict_categorias:
+            dict_categorias[categoria] = regra_simples[categoria]
+
+    return dict_cartelas_pontos
+

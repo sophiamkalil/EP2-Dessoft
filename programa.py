@@ -20,20 +20,21 @@ cartela= {
     }
 }
 imprime_cartela(cartela)
-i = 0
-list_combinacaoes = []
-while i < 12:
+
+rodada = 0
+combinacoes_usadas = []
+while rodada < 12:
     dados_rolados = rolar_dados(5)
     dados_estoque = []
+    rerrolagem = 0  
 
     print(f'Dados rolados: {dados_rolados}')
     print(f'Dados guardados: {dados_estoque}')
     print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
     escolha = input('>')
 
-    rerrolagem = 0
-    while i < 12:
-        if int(escolha) in [1, 2, 3, 4, 5, 0]:
+    while True:
+        if escolha in ['1', '2', '3', '4', '5', '0']:
             if int(escolha) == 1:
                 print('Digite o índice do dado a ser guardado (0 a 4):')
                 acao = int(input('>'))
@@ -61,33 +62,35 @@ while i < 12:
                 while acao not in combinacoes:
                     print("Combinação inválida. Tente novamente.")
                     acao = input('>')
-                if acao not in list_combinacaoes:
-                    list_combinacaoes.append(acao)
+                if acao not in combinacoes_usadas:
+                    combinacoes_usadas.append(acao)
                 else:
-                    while acao in list_combinacaoes:
+                    while acao in combinacoes_usadas:
                         print("Essa combinação já foi utilizada.")
                         acao = input('>')
-                    list_combinacaoes.append(acao)
+                    combinacoes_usadas.append(acao)
+                for dado in dados_rolados:
+                    dados_estoque.append(dado)
                 cartela = faz_jogada(dados_estoque, acao, cartela)
                 rerrolagem = 0 
-                i+=1
+                rodada+=1
                 break
 
             print(f'Dados rolados: {dados_rolados}')
             print(f'Dados guardados: {dados_estoque}')
             print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
-            escolha = int(input('>'))
+            escolha = input('>')
 
         else:
             print('Opção inválida. Tente novamente.')
-            escolha = int(input('>'))
+            escolha = input('>')
 
 pontuacao = 0
 dict_categoria = cartela['regra_simples']
 for pontos in dict_categoria.values():
     pontuacao += pontos
-    if pontuacao >= 63:
-        pontuacao += 35
+if pontuacao >= 63:
+    pontuacao += 35
 dict_categoria = cartela['regra_avancada']
 for pontos in dict_categoria.values():
     pontuacao += pontos

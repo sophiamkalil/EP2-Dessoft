@@ -31,10 +31,11 @@ while rodada < 12:
     print(f'Dados rolados: {dados_rolados}')
     print(f'Dados guardados: {dados_estoque}')
     print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
-    escolha = input('>')
 
     while True:
-        if escolha in ['1', '2', '3', '4', '5', '0']:
+        escolha = input('>').strip()   
+         
+        if escolha in ['1', '2', '3', '4', '0']:
             if int(escolha) == 1:
                 print('Digite o índice do dado a ser guardado (0 a 4):')
                 acao = int(input('>'))
@@ -68,6 +69,9 @@ while rodada < 12:
                     while acao in combinacoes_usadas:
                         print("Essa combinação já foi utilizada.")
                         acao = input('>')
+                        while acao not in combinacoes:
+                            print("Combinação inválida. Tente novamente.")
+                            acao = input('>')
                     combinacoes_usadas.append(acao)
                 for dado in dados_rolados:
                     dados_estoque.append(dado)
@@ -79,11 +83,9 @@ while rodada < 12:
             print(f'Dados rolados: {dados_rolados}')
             print(f'Dados guardados: {dados_estoque}')
             print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
-            escolha = input('>')
 
         else:
             print('Opção inválida. Tente novamente.')
-            escolha = input('>')
 
 pontuacao = 0
 dict_categoria = cartela['regra_simples']

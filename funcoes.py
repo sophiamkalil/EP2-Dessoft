@@ -40,13 +40,14 @@ def remover_dado(lista_dados_rolados, lista_dados_estoque, indice): #indice: ind
     return lista_rolados_estoque
 
 def calcula_pontos_regra_simples(lista_numeros): #numeros: faces do dado
-    dict_pontos = {}
-    dict_pontos[1] = 0
-    dict_pontos[2] = 0
-    dict_pontos[3] = 0
-    dict_pontos[4] = 0
-    dict_pontos[5] = 0
-    dict_pontos[6] = 0
+    dict_pontos = {
+        1: 0,  
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0
+    }
 
     for numero in lista_numeros:
         if numero in dict_pontos:
@@ -176,15 +177,15 @@ def faz_jogada(list_dados, categoria, dict_cartelas_pontos):
     regra_simples = calcula_pontos_regra_simples(list_dados)
 
     if categoria in regra_avancada:
-        dict_categorias = dict_cartelas_pontos['regra_avancada']
-        for cat_pontos in dict_categorias:
-            dict_categorias[categoria] = regra_avancada[categoria]
-
-    elif int(categoria) in regra_simples:
-        categoria = int(categoria)
-        dict_categorias = dict_cartelas_pontos['regra_simples']
-        for cat_pontos in dict_categorias:
-            dict_categorias[categoria] = regra_simples[categoria]
+        dict_cartelas_pontos['regra_avancada'][categoria] = regra_avancada[categoria]
+    
+    else:
+        try:
+            categoria_num = int(categoria)  
+            if categoria_num in regra_simples:
+                dict_cartelas_pontos['regra_simples'][categoria_num] = regra_simples[categoria_num]
+        except ValueError:  
+            pass  
 
     return dict_cartelas_pontos
 
@@ -204,3 +205,4 @@ def imprime_cartela(cartela):
         else:
             print(f"| {i}: {filler}|    |")
     print("-"*25)
+
